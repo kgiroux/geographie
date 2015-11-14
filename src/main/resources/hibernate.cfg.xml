@@ -17,6 +17,7 @@
 		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">true</property>
-		<mapping resource="Voiture.hbm.xml"/>
+		<mapping resource="Pays.hbm.xml"/>
+		<mapping resource="Ville.hbm.xml"/>	
 	</session-factory>
 </hibernate-configuration>
