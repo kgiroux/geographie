@@ -61,8 +61,10 @@ public class VilleDAO implements IVilleDAO{
 			
 			rs=ps.executeQuery();
 			
-			if(rs.next())
-				retour =new Ville(rs.getInt("id"),rs.getString("nom"),rs.getInt("nb_habitants"),rs.getInt("id_pays"));
+			if(rs.next()){
+				PaysDAO paysDAO = new PaysDAO();
+				retour =new Ville(rs.getInt("id"),rs.getString("nom"),rs.getInt("nb_habitants"),paysDAO.getPays(rs.getInt("id_pays")));
+			}
 
 		} catch (Exception ee) {
 			ee.printStackTrace();
@@ -89,8 +91,10 @@ public class VilleDAO implements IVilleDAO{
 			
 			rs=ps.executeQuery();
 			
-			while(rs.next())
-				retour.add(new Ville(rs.getInt("id"),rs.getString("nom"),rs.getInt("nb_habitants"),rs.getInt("id_pays")));
+			while(rs.next()){
+				PaysDAO paysDAO = new PaysDAO();
+				retour.add(new Ville(rs.getInt("id"),rs.getString("nom"),rs.getInt("nb_habitants"),paysDAO.getPays(rs.getInt("id_pays"))));
+			}
 			
 		} catch (Exception ee) {
 			ee.printStackTrace();
@@ -153,7 +157,7 @@ public class VilleDAO implements IVilleDAO{
 		Ville ville = getVille(v.getId());
 		v.setNom(ville.getNom());
 		v.setNb_habitant(ville.getNb_habitant());
-		v.setId_pays(ville.getPays().getId());
+		v.setPays(ville.getPays());
 	}
 
 }
