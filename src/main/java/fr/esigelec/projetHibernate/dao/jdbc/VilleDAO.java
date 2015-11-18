@@ -35,7 +35,7 @@ public class VilleDAO implements IVilleDAO{
 			ps = con.prepareStatement("INSERT INTO ville (nom, superficie) VALUES ( ? , ?, ? )");
 			ps.setString(1,v.getNom()); 
 			ps.setInt(2,v.getNb_habitant());
-			ps.setInt(3,v.getId_pays());
+			ps.setInt(3,v.getPays().getId());
 
 			ps.executeUpdate();
 		} catch (Exception ee) {
@@ -114,7 +114,7 @@ public class VilleDAO implements IVilleDAO{
 			ps = con.prepareStatement("UPDATE ville SET nom = ?, nb_habitants = ?, id_pays = ? WHERE id = ?");
 			ps.setString(1,v.getNom()); 
 			ps.setInt(2,v.getNb_habitant());
-			ps.setInt(3,v.getId_pays());
+			ps.setInt(3,v.getPays().getId());
 
 			ps.executeUpdate();
 		} catch (Exception ee) {
@@ -153,7 +153,7 @@ public class VilleDAO implements IVilleDAO{
 		Ville ville = getVille(v.getId());
 		v.setNom(ville.getNom());
 		v.setNb_habitant(ville.getNb_habitant());
-		v.setId_pays(ville.getId_pays());
+		v.setId_pays(ville.getPays().getId());
 	}
 
 }
