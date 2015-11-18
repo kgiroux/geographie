@@ -1,19 +1,19 @@
 package fr.esigelec.projetHibernate.dto;
 
 public class Ville {
-	int id;
-	String nom;
-	int nb_habitant;
-	int id_pays;
+	private int id;
+	private String nom;
+	private int nb_habitant;
+	private Pays pays;
 	public Ville() {
 		
 	}
-	public Ville(int id, String nom, int nb_habitant, int id_pays) {
+	public Ville(int id, String nom, int nb_habitant, Pays pays) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.nb_habitant = nb_habitant;
-		this.id_pays = id_pays;
+		this.pays = pays;
 	}
 	public int getId() {
 		return id;
@@ -33,17 +33,17 @@ public class Ville {
 	public void setNb_habitant(int nb_habitant) {
 		this.nb_habitant = nb_habitant;
 	}
-	public int getId_pays() {
-		return id_pays;
+	public Pays getPays() {
+		return pays;
 	}
-	public void setId_pays(int id_pays) {
-		this.id_pays = id_pays;
+	public void setPays(Pays pays) {
+		this.pays = pays;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Ville [id=" + id + ", nom=" + nom + ", nb_habitant=" + nb_habitant + ", id_pays=" + id_pays + "]";
+		return "Ville [id=" + id + ", nom=" + nom + ", nb_habitant=" + nb_habitant + ", id_pays=" + pays.toString() + "]";
 	}
 	
 }
