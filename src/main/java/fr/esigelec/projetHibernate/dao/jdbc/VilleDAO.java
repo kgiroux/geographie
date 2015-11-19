@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.esigelec.projetHibernate.dao.IVilleDAO;
-import fr.esigelec.projetHibernate.dto.Pays;
 import fr.esigelec.projetHibernate.dto.Ville;
 
 public class VilleDAO implements IVilleDAO{
