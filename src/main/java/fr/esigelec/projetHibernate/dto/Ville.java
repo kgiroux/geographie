@@ -3,7 +3,7 @@ package fr.esigelec.projetHibernate.dto;
 public class Ville {
 	private int id;
 	private String nom;
-	private int nb_habitant;
+	private int nb_habitants;
 	private Pays pays;
 	public Ville() {
 		
@@ -12,7 +12,7 @@ public class Ville {
 		super();
 		this.id = id;
 		this.nom = nom;
-		this.nb_habitant = nb_habitant;
+		this.nb_habitants = nb_habitant;
 		this.pays = pays;
 	}
 	public int getId() {
@@ -27,11 +27,11 @@ public class Ville {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public int getNb_habitant() {
-		return nb_habitant;
+	public int getNb_habitants() {
+		return nb_habitants;
 	}
-	public void setNb_habitant(int nb_habitant) {
-		this.nb_habitant = nb_habitant;
+	public void setNb_habitants(int nb_habitant) {
+		this.nb_habitants = nb_habitant;
 	}
 	public Pays getPays() {
 		return pays;
@@ -43,7 +43,7 @@ public class Ville {
 
 	@Override
 	public String toString() {
-		return "Ville [id=" + id + ", nom=" + nom + ", nb_habitant=" + nb_habitant + ", id_pays=" + pays.toString() + "]";
+		return "Ville [id=" + id + ", nom=" + nom + ", nb_habitant=" + nb_habitants + ", id_pays=" + pays.toString() + "]";
 	}
 	
 }

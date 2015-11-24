@@ -4,17 +4,16 @@ import java.util.ArrayList;
 
 public class Pays {
 	int id;
-	String name;
-	int superficie;
+	String nom;
+	String superficie;
 	ArrayList<Ville> listVille;
 	
 	public Pays() {
 		
 	}
-	public Pays(int id, String name, int superficie) {
-		super();
+	public Pays(int id, String name, String superficie) {
 		this.id = id;
-		this.name = name;
+		this.nom = name;
 		this.superficie = superficie;
 	}
 	public ArrayList<Ville> getListVille() {
@@ -29,21 +28,21 @@ public class Pays {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getNom() {
+		return nom;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setNom(String name) {
+		this.nom = name;
 	}
-	public int getSuperficie() {
+	public String getSuperficie() {
 		return superficie;
 	}
-	public void setSuperficie(int superficie) {
+	public void setSuperficie(String superficie) {
 		this.superficie = superficie;
 	}
 	@Override
 	public String toString() {
-		return "Pays [id=" + id + ", name=" + name + ", superficie=" + superficie + ", listVille=" + listVille + "]";
+		return "Pays [id=" + id + ", name=" + nom + ", superficie=" + superficie + ", listVille=" + listVille + "]";
 	}
 	
 	

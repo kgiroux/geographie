@@ -32,8 +32,8 @@ public class PaysDAO implements IPaysDAO {
 		try {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement("INSERT INTO pays (nom, superficie) VALUES ( ? , ? )");
-			ps.setString(1,p.getName()); 
-			ps.setInt(2,p.getSuperficie());
+			ps.setString(1,p.getNom()); 
+			ps.setString(2,p.getSuperficie());
 
 			ps.executeUpdate();
 		} catch (Exception ee) {
@@ -60,7 +60,7 @@ public class PaysDAO implements IPaysDAO {
 			rs=ps.executeQuery();
 			
 			if(rs.next())
-				retour =new Pays(rs.getInt("id"),rs.getString("nom"),rs.getInt("superficie"));
+				retour =new Pays(rs.getInt("id"),rs.getString("nom"),rs.getString("superficie"));
 
 		} catch (Exception ee) {
 			ee.printStackTrace();
@@ -88,7 +88,7 @@ public class PaysDAO implements IPaysDAO {
 			rs=ps.executeQuery();
 			
 			while(rs.next())
-				retour.add(new Pays(rs.getInt("id"),rs.getString("nom"),rs.getInt("superficie")));
+				retour.add(new Pays(rs.getInt("id"),rs.getString("nom"),rs.getString("superficie")));
 			
 		} catch (Exception ee) {
 			ee.printStackTrace();
@@ -117,7 +117,7 @@ public class PaysDAO implements IPaysDAO {
 			rs=ps.executeQuery();
 			
 			if(rs.next())
-				retour =new Pays(rs.getInt("id"),rs.getString("nom"),rs.getInt("superficie"));
+				retour =new Pays(rs.getInt("id"),rs.getString("nom"),rs.getString("superficie"));
 
 		} catch (Exception ee) {
 			ee.printStackTrace();
@@ -139,8 +139,8 @@ public class PaysDAO implements IPaysDAO {
 		try {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement("UPDATE pays SET nom = ?, superficie = ? WHERE id = ?");
-			ps.setString(1,p.getName()); 
-			ps.setInt(2,p.getSuperficie());
+			ps.setString(1,p.getNom()); 
+			ps.setString(2,p.getSuperficie());
 			ps.setInt(3, p.getId());
 
 			ps.executeUpdate();
@@ -178,7 +178,7 @@ public class PaysDAO implements IPaysDAO {
 
 	public void refresh(Pays p) {
 		Pays pays = getPays(p.getId());
-		p.setName(pays.getName());
+		p.setNom(pays.getNom());
 		p.setSuperficie(pays.getSuperficie());
 	}
 

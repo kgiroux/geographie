@@ -33,7 +33,7 @@ public class VilleDAO implements IVilleDAO{
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement("INSERT INTO ville (nom, superficie) VALUES ( ? , ?, ? )");
 			ps.setString(1,v.getNom()); 
-			ps.setInt(2,v.getNb_habitant());
+			ps.setInt(2,v.getNb_habitants());
 			ps.setInt(3,v.getPays().getId());
 
 			ps.executeUpdate();
@@ -116,7 +116,7 @@ public class VilleDAO implements IVilleDAO{
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement("UPDATE ville SET nom = ?, nb_habitants = ?, id_pays = ? WHERE id = ?");
 			ps.setString(1,v.getNom()); 
-			ps.setInt(2,v.getNb_habitant());
+			ps.setInt(2,v.getNb_habitants());
 			ps.setInt(3,v.getPays().getId());
 
 			ps.executeUpdate();
@@ -155,7 +155,7 @@ public class VilleDAO implements IVilleDAO{
 	public void refresh(Ville v) {
 		Ville ville = getVille(v.getId());
 		v.setNom(ville.getNom());
-		v.setNb_habitant(ville.getNb_habitant());
+		v.setNb_habitants(ville.getNb_habitants());
 		v.setPays(ville.getPays());
 	}
 
