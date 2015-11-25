@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.Statement;
+
 import fr.esigelec.projetHibernate.dao.IVilleDAO;
 import fr.esigelec.projetHibernate.dto.Ville;
 
@@ -31,12 +33,14 @@ public class VilleDAO implements IVilleDAO{
 		//CONNEXION BDD
 		try {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
-			ps = con.prepareStatement("INSERT INTO ville (nom, superficie) VALUES ( ? , ?, ? )");
+			ps = con.prepareStatement("INSERT INTO ville (nom, superficie, id_pays) VALUES ( ? , ?, ? )",Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1,v.getNom()); 
 			ps.setInt(2,v.getNb_habitants());
 			ps.setInt(3,v.getPays().getId());
 
 			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+			v.setId(rs.getInt(1));
 		} catch (Exception ee) {
 			ee.printStackTrace();
 		} finally {
