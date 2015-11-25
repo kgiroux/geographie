@@ -7,25 +7,20 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import fr.esigelec.projetHibernate.dao.IVilleDAO;
-import fr.esigelec.projetHibernate.dto.Pays;
 import fr.esigelec.projetHibernate.dto.Ville;
 
 public class VilleDAOImpl implements IVilleDAO {
-
 	public void ajouter(Ville v) throws IllegalArgumentException{
 		if(v != null){
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			// Seul ligne qui peut changer
 			session.save(v);
 			session.getTransaction().commit();
 			session.close();
 		}else{
 			throw new IllegalArgumentException("Null Parameter");
 		}
-		
 	}
-
 	public Ville getVille(int id) throws InvalidParameterException {
 		if(id > 0){
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -39,7 +34,6 @@ public class VilleDAOImpl implements IVilleDAO {
 			throw new InvalidParameterException();
 		}
 	}
-
 	public List<Ville> getVilles() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -50,12 +44,10 @@ public class VilleDAOImpl implements IVilleDAO {
 		session.close();
 		return cities;
 	}
-
 	public void update(Ville v) throws InvalidParameterException {
 		if(v != null){
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			
 			try{
 				session.saveOrUpdate(v);
 				session.getTransaction().commit();
@@ -67,9 +59,7 @@ public class VilleDAOImpl implements IVilleDAO {
 		}else{
 			throw new InvalidParameterException("Null Parameter");
 		}
-		
 	}
-
 	public void delete(Ville v) throws IllegalArgumentException{
 		if(v != null){
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -86,9 +76,7 @@ public class VilleDAOImpl implements IVilleDAO {
 		}else{
 			throw new InvalidParameterException("Null Parameter");
 		}
-		
 	}
-
 	public void refresh(Ville v) throws InvalidParameterException{
 		if(v != null){
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -106,5 +94,4 @@ public class VilleDAOImpl implements IVilleDAO {
 			throw new InvalidParameterException("Null parameter");
 		}
 	}
-
 }

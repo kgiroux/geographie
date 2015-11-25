@@ -23,7 +23,6 @@ public class PaysDAOImpl implements IPaysDAO {
 			throw new IllegalArgumentException("Null Parameter");
 		}
 	}
-
 	public Pays getPays(int id) throws InvalidParameterException {
 		if(id > 0){
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -37,7 +36,6 @@ public class PaysDAOImpl implements IPaysDAO {
 			throw new InvalidParameterException();
 		}
 	}
-
 	public List<Pays> getPays() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -48,7 +46,6 @@ public class PaysDAOImpl implements IPaysDAO {
 		session.close();
 		return countries;
 	}
-
 	public Pays getPays(String nomPays) {
 		if(!("".equals(nomPays))){
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -65,7 +62,6 @@ public class PaysDAOImpl implements IPaysDAO {
 			throw new InvalidParameterException();
 		}
 	}
-
 	public void update(Pays p) throws InvalidParameterException{
 		if(p != null){
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -84,7 +80,6 @@ public class PaysDAOImpl implements IPaysDAO {
 		}
 		
 	}
-
 	public void delete(Pays p) throws InvalidParameterException{
 		if(p != null){
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -101,9 +96,7 @@ public class PaysDAOImpl implements IPaysDAO {
 		}else{
 			throw new InvalidParameterException("Null Parameter");
 		}
-		
 	}
-
 	public void refresh(Pays p) throws InvalidParameterException{
 		if(p != null){
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -121,5 +114,4 @@ public class PaysDAOImpl implements IPaysDAO {
 			throw new InvalidParameterException("Null parameter");
 		}
 	}
-
 }

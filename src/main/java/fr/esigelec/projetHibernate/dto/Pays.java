@@ -1,26 +1,18 @@
+/**
+ * @author GIROUX Kévin & LEFEBVRE Cyril
+ */
 package fr.esigelec.projetHibernate.dto;
-
-import java.util.ArrayList;
 
 public class Pays {
 	int id;
 	String nom;
 	String superficie;
-	ArrayList<Ville> listVille;
 	
-	public Pays() {
-		
-	}
+	public Pays() {}
 	public Pays(int id, String name, String superficie) {
 		this.id = id;
 		this.nom = name;
 		this.superficie = superficie;
-	}
-	public ArrayList<Ville> getListVille() {
-		return listVille;
-	}
-	public void setListVille(ArrayList<Ville> listVille) {
-		this.listVille = listVille;
 	}
 	public int getId() {
 		return id;
@@ -42,8 +34,6 @@ public class Pays {
 	}
 	@Override
 	public String toString() {
-		return "Pays [id=" + id + ", name=" + nom + ", superficie=" + superficie + ", listVille=" + listVille + "]";
-	}
-	
-	
+		return "Pays [id=" + id + ", name=" + nom + ", superficie=" + superficie + "]";
+	}	
 }

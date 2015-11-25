@@ -1,3 +1,6 @@
+/**
+ * @author GIROUX Kévin & LEFEBVRE Cyril
+ */
 package fr.esigelec.projetHibernate.dto;
 
 public class Ville {
@@ -5,9 +8,8 @@ public class Ville {
 	private String nom;
 	private int nb_habitants;
 	private Pays pays;
-	public Ville() {
-		
-	}
+	
+	public Ville() {}
 	public Ville(int id, String nom, int nb_habitant, Pays pays) {
 		super();
 		this.id = id;
@@ -39,11 +41,8 @@ public class Ville {
 	public void setPays(Pays pays) {
 		this.pays = pays;
 	}
-
-
 	@Override
 	public String toString() {
 		return "Ville [id=" + id + ", nom=" + nom + ", nb_habitant=" + nb_habitants + ", id_pays=" + pays.toString() + "]";
 	}
-	
 }
