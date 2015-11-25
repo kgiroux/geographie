@@ -54,7 +54,7 @@ public class VilleDAO implements IVilleDAO{
 
 		//CONNEXION BDD
 		try {
-			con = DriverManager.getConnection(URL);
+			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement("SELECT * FROM ville WHERE id= ?");
 			ps.setInt(1,id);
 			
@@ -85,7 +85,7 @@ public class VilleDAO implements IVilleDAO{
 
 		//CONNEXION BDD
 		try {
-			con = DriverManager.getConnection(URL);
+			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement("SELECT * FROM ville");
 			
 			rs=ps.executeQuery();

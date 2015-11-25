@@ -7,6 +7,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.criteria.Root;
+
+import org.jboss.logging.MDC;
+
 import fr.esigelec.projetHibernate.dao.IPaysDAO;
 import fr.esigelec.projetHibernate.dto.Pays;
 
@@ -36,6 +40,7 @@ public class PaysDAO implements IPaysDAO {
 			ps.setString(2,p.getSuperficie());
 
 			ps.executeUpdate();
+			
 		} catch (Exception ee) {
 			ee.printStackTrace();
 		} finally {
@@ -53,7 +58,7 @@ public class PaysDAO implements IPaysDAO {
 
 		//CONNEXION BDD
 		try {
-			con = DriverManager.getConnection(URL);
+			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement("SELECT * FROM pays WHERE id= ?");
 			ps.setInt(1,id);
 			
@@ -82,7 +87,7 @@ public class PaysDAO implements IPaysDAO {
 
 		//CONNEXION BDD
 		try {
-			con = DriverManager.getConnection(URL);
+			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement("SELECT * FROM pays");
 			
 			rs=ps.executeQuery();
@@ -110,7 +115,7 @@ public class PaysDAO implements IPaysDAO {
 
 		//CONNEXION BDD
 		try {
-			con = DriverManager.getConnection(URL);
+			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement("SELECT * FROM pays WHERE nom= ?");
 			ps.setString(1,nomPays);
 			
