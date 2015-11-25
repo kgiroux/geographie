@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.criteria.Root;
 
 import org.jboss.logging.MDC;
+import com.mysql.jdbc.Statement;
 
 import fr.esigelec.projetHibernate.dao.IPaysDAO;
 import fr.esigelec.projetHibernate.dto.Pays;
@@ -35,12 +36,13 @@ public class PaysDAO implements IPaysDAO {
 		//CONNEXION BDD
 		try {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
-			ps = con.prepareStatement("INSERT INTO pays (nom, superficie) VALUES ( ? , ? )");
+			ps = con.prepareStatement("INSERT INTO pays (nom, superficie) VALUES ( ? , ? )",Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1,p.getNom()); 
 			ps.setString(2,p.getSuperficie());
-
 			ps.executeUpdate();
 			
+			ResultSet rs = ps.getGeneratedKeys();
+			p.setId(rs.getInt(1));
 		} catch (Exception ee) {
 			ee.printStackTrace();
 		} finally {
