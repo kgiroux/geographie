@@ -3,11 +3,13 @@
  */
 package fr.esigelec.projetHibernate.dto;
 
+import java.util.ArrayList;
+
 public class Pays {
 	int id;
 	String nom;
 	String superficie;
-	
+	ArrayList<Ville> villes;
 	public Pays() {}
 	public Pays(int id, String name, String superficie) {
 		this.id = id;
