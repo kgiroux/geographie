@@ -7,6 +7,6 @@
 		</id>
 		<property name="nom" column="nom" type="string"/>
 		<property name="nb_habitants" column="nb_habitants" type="integer"/> <!-- column ="prenom" par défaut-->
-		<many-to-one name="pays" column="id_pays" not-null="true" lazy="false"/>
+		<many-to-one name="pays" column="id_pays" not-null="true" lazy="false" cascade="none"/>
 		</class>
 </hibernate-mapping>

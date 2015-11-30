@@ -9,9 +9,9 @@
 		<property name="superficie" column="superficie" type="string"/> <!-- column ="prenom" par défaut-->
 		<!-- les types peuvent etre trouvés automatiquement par hibernate avec la reflexion, il peut etre utile
 		de les mettre pour le type Date par exemple, car il existe plusieurs classes date -->
-		<set name="villes" inverse="true">
-			<key column="id"/>
-			<one-to-many class="Ville"/>
+		<set name="villes" inverse="true" lazy="false">
+			<key column="id_pays"/>
+			<one-to-many class="Ville" />
 		</set>
 	
 	</class>
