@@ -106,5 +106,13 @@ public class main {
 		
 		System.out.println("JDBC");
 		jdbc.getPaysDAO().delete(pays);
+		
+		System.out.println("\n			Bidirectionnal :\n");
+		Ville paris = new Ville(0, "Rouen", 2240000, pays);
+		hiber.getPaysDAO().ajouter(pays);
+		hiber.getVilleDAO().ajouter(paris);
+		Ville v = hiber.getVilleDAO().getVille(paris.getId());
+		System.out.println(v.toString());
+		hiber.getVilleDAO().delete(paris);
 	}
 }

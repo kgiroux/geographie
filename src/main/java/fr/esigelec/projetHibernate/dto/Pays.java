@@ -3,18 +3,26 @@
  */
 package fr.esigelec.projetHibernate.dto;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Pays {
 	int id;
 	String nom;
 	String superficie;
-	ArrayList<Ville> villes;
+	Set<Ville> villes;
 	public Pays() {}
 	public Pays(int id, String name, String superficie) {
 		this.id = id;
 		this.nom = name;
 		this.superficie = superficie;
+		villes = new HashSet<Ville>();
+	}
+	public Set<Ville> getVilles() {
+		return villes;
+	}
+	public void setVilles(Set<Ville> villes) {
+		this.villes = villes;
 	}
 	public int getId() {
 		return id;
