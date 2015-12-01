@@ -12,7 +12,6 @@ public class Pays {
 	String superficie;
 	Set<Ville> villes;
 	public Pays() {
-		villes = new HashSet<Ville>();
 		
 	}
 	public Pays(int id, String name, String superficie) {
@@ -48,12 +47,16 @@ public class Pays {
 	public String getVillesString(){
 		String returnString ="";
 		if(villes != null){
-			for(Ville v : villes){
+			/*for(Ville v : villes){
 				returnString = v.toString() + "\n";
-			}
+			}*/
 		}
 		
 		return returnString;
+	}
+	
+	public void setVille(Ville v){
+		villes.add(v);
 	}
 	@Override
 	public String toString() {

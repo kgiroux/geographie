@@ -23,7 +23,11 @@ public class main {
 		System.out.println("\n			Add :\n");
 		
 		System.out.println("Hibernate");
+		
+		pays.setVille(ville);
 		hiber.getPaysDAO().ajouter(pays);
+		
+		
 		hiber.getVilleDAO().ajouter(ville);
 		
 		System.out.println("JDBC");
