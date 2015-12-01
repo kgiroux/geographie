@@ -7,7 +7,7 @@
 		</id>
 		<property name="nom" column="nom" type="string"/>
 		<property name="nb_habitants" column="nb_habitants" type="integer"/> <!-- column ="prenom" par défaut-->
-		<many-to-one name="pays" class="fr.esigelec.projetHibernate.dto.Pays" lazy="false" cascade="none" fetch="select">
+		<many-to-one name="pays" class="fr.esigelec.projetHibernate.dto.Pays" lazy="false" cascade="none">
 			<column name="id_pays" not-null="true" />
 		</many-to-one>
 		</class>

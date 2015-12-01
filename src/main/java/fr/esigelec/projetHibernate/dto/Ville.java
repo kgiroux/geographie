@@ -43,6 +43,6 @@ public class Ville {
 	}
 	@Override
 	public String toString() {
-		return "Ville [id=" + id + ", nom=" + nom + ", nb_habitant=" + nb_habitants + ", id_pays=" + pays.toString() + "]";
+		return "Ville [id=" + id + ", nom=" + nom + ", nb_habitant=" + nb_habitants +  "]";
 	}
 }

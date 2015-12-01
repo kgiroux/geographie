@@ -44,23 +44,12 @@ public class Pays {
 	public void setSuperficie(String superficie) {
 		this.superficie = superficie;
 	}
-	public String getVillesString(){
-		String returnString ="";
-		if(villes != null){
-			/*for(Ville v : villes){
-				returnString = v.toString() + "\n";
-			}*/
-		}
-		
-		return returnString;
-	}
 	
 	public void setVille(Ville v){
 		villes.add(v);
 	}
 	@Override
 	public String toString() {
-		String returnString = getVillesString();
-		return "Pays [id=" + id + ", nom=" + nom + ", superficie=" + superficie + ", villes=" + returnString + "]";
+		return "Pays [id=" + id + ", nom=" + nom + ", superficie=" + superficie + ", villes=" + villes.toString() + "]";
 	}	
 }
