@@ -6,8 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import fr.esigelec.projetHibernate.dao.IVilleDAO;
+import fr.esigelec.projetHibernate.dto.Pays;
 import fr.esigelec.projetHibernate.dto.Ville;
 
 public class VilleDAO implements IVilleDAO{
@@ -69,7 +71,7 @@ public class VilleDAO implements IVilleDAO{
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs=null;
-		List<Ville> retour=new ArrayList<Ville>();
+		List<Ville> retour = new ArrayList<Ville>();
 		try {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement("SELECT * FROM ville");
@@ -77,6 +79,29 @@ public class VilleDAO implements IVilleDAO{
 			while(rs.next()){
 				PaysDAO paysDAO = new PaysDAO();
 				retour.add(new Ville(rs.getInt("id"),rs.getString("nom"),rs.getInt("nb_habitants"),paysDAO.getPays(rs.getInt("id_pays"))));
+			}
+		} catch (Exception ee) {
+			ee.printStackTrace();
+		} finally {
+			try {if (rs != null)rs.close();} catch (Exception t) {}
+			try {if (ps != null)ps.close();} catch (Exception t) {}
+			try {if (con != null)con.close();} catch (Exception t) {}
+		}
+		return retour;
+	}
+	public Set<Ville> getVillesByPays(Pays pays) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs=null;
+		Set<Ville> retour = null;
+		try {
+			con = DriverManager.getConnection(URL, LOGIN, PASS);
+			ps = con.prepareStatement("SELECT * FROM ville WHERE id_pays = ?");
+			ps.setInt(1,pays.getId());
+			rs=ps.executeQuery();
+			while(rs.next()){
+				PaysDAO paysDAO = new PaysDAO();
+				retour.add(new Ville(rs.getInt("id"),rs.getString("nom"),rs.getInt("nb_habitants"),pays));
 			}
 		} catch (Exception ee) {
 			ee.printStackTrace();

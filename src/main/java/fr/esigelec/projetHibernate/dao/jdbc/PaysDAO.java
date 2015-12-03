@@ -9,6 +9,7 @@ import java.util.List;
 
 import fr.esigelec.projetHibernate.dao.IPaysDAO;
 import fr.esigelec.projetHibernate.dto.Pays;
+import fr.esigelec.projetHibernate.dto.Ville;
 
 public class PaysDAO implements IPaysDAO {
 	final static String URL = "jdbc:mysql://127.0.0.1/bdd_geographie";
@@ -34,6 +35,12 @@ public class PaysDAO implements IPaysDAO {
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
 			p.setId(rs.getInt(1));
+			
+			VilleDAO villeDAO = new VilleDAO();
+			
+			for(Ville v : p.getVilles()){
+				villeDAO.ajouter(v);
+			}
 		} catch (Exception ee) {
 			ee.printStackTrace();
 		} finally {
@@ -51,8 +58,11 @@ public class PaysDAO implements IPaysDAO {
 			ps = con.prepareStatement("SELECT * FROM pays WHERE id= ?");
 			ps.setInt(1,id);
 			rs=ps.executeQuery();
-			if(rs.next())
+			if(rs.next()){
+				VilleDAO villeDAO = new VilleDAO();
 				retour =new Pays(rs.getInt("id"),rs.getString("nom"),rs.getString("superficie"));
+				retour.setVilles(villeDAO.getVillesByPays(retour));
+			}
 		} catch (Exception ee) {
 			ee.printStackTrace();
 		} finally {
@@ -71,8 +81,15 @@ public class PaysDAO implements IPaysDAO {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement("SELECT * FROM pays");
 			rs=ps.executeQuery();
-			while(rs.next())
-				retour.add(new Pays(rs.getInt("id"),rs.getString("nom"),rs.getString("superficie")));
+
+			Pays pays = new Pays();
+			VilleDAO villeDAO = new VilleDAO();
+			
+			while(rs.next()){
+				pays = new Pays(rs.getInt("id"),rs.getString("nom"),rs.getString("superficie"));
+				pays.setVilles(villeDAO.getVillesByPays(pays));
+				retour.add(pays);
+			}
 		} catch (Exception ee) {
 			ee.printStackTrace();
 		} finally {
@@ -92,8 +109,11 @@ public class PaysDAO implements IPaysDAO {
 			ps = con.prepareStatement("SELECT * FROM pays WHERE nom= ?");
 			ps.setString(1,nomPays);
 			rs=ps.executeQuery();
-			if(rs.next())
+			if(rs.next()){
+				VilleDAO villeDAO = new VilleDAO();
 				retour =new Pays(rs.getInt("id"),rs.getString("nom"),rs.getString("superficie"));
+				retour.setVilles(villeDAO.getVillesByPays(retour));
+			}
 		} catch (Exception ee) {
 			ee.printStackTrace();
 		} finally {
@@ -113,6 +133,12 @@ public class PaysDAO implements IPaysDAO {
 			ps.setString(2,p.getSuperficie());
 			ps.setInt(3, p.getId());
 			ps.executeUpdate();
+			
+			VilleDAO villeDAO = new VilleDAO();
+			
+			for(Ville v : p.getVilles()){
+				villeDAO.update(v);
+			}
 		} catch (Exception ee) {
 			ee.printStackTrace();
 		} finally {
@@ -137,7 +163,9 @@ public class PaysDAO implements IPaysDAO {
 	}
 	public void refresh(Pays p) {
 		Pays pays = getPays(p.getId());
+		VilleDAO villeDAO = new VilleDAO();
 		p.setNom(pays.getNom());
 		p.setSuperficie(pays.getSuperficie());
+		p.setVilles(villeDAO.getVillesByPays(p));
 	}
 }

@@ -1,6 +1,5 @@
 package fr.esigelec.projetHibernate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import fr.esigelec.projetHibernate.dao.DAOFactory;
@@ -120,20 +119,24 @@ public class main {
 		jdbc.getPaysDAO().delete(pays);
 		
 		System.out.println("\n			Bidirectionnal :\n");
-		Ville paris = new Ville(0, "Paris", 2240000, pays);
-		Ville rouen = new Ville (0,"Rouen", 250000,pays);
-		hiber.getPaysDAO().ajouter(pays);
-		hiber.getVilleDAO().ajouter(paris);
-		//hiber.getVilleDAO().ajouter(rouen);
-		Ville v = hiber.getVilleDAO().getVille(paris.getId());
-		Pays paystest = hiber.getPaysDAO().getPays(pays.getId());
-		System.out.println(v.toString());
-		System.out.println(paystest.toString());
-		hiber.getVilleDAO().delete(paris);
-		hiber.getPaysDAO().delete(pays);
 		
+		Pays paysBid = new Pays(0,"Allemagne","645km2");
+		Ville berlin = new Ville(0, "Berlin", 2240000, paysBid);
+		Ville hamburg = new Ville (0, "Hamburg", 250000, paysBid);
 		
+		paysBid.setVille(berlin);
+		hiber.getPaysDAO().ajouter(paysBid);
 		
+		Pays paysBidTest = hiber.getPaysDAO().getPays(paysBid.getId());
+		System.out.println(paysBidTest.toString());
+		paysBid.setVille(hamburg);
+		System.out.println(paysBidTest.toString());
+		
+		hiber.getPaysDAO().update(paysBidTest);
+		paysBidTest = hiber.getPaysDAO().getPays(paysBidTest.getId());
+		System.out.println(paysBidTest.toString());
+		
+		hiber.getPaysDAO().delete(paysBidTest);
 		
 	}
 }
