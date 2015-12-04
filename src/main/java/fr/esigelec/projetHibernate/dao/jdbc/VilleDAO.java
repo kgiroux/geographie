@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -93,7 +94,7 @@ public class VilleDAO implements IVilleDAO{
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs=null;
-		Set<Ville> retour = null;
+		Set<Ville> retour = new HashSet<Ville>();;
 		try {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement("SELECT * FROM ville WHERE id_pays = ?");
