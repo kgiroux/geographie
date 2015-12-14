@@ -35,12 +35,6 @@ public class PaysDAO implements IPaysDAO {
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
 			p.setId(rs.getInt(1));
-			
-			VilleDAO villeDAO = new VilleDAO();
-			
-			for(Ville v : p.getVilles()){
-				villeDAO.ajouter(v);
-			}
 		} catch (Exception ee) {
 			ee.printStackTrace();
 		} finally {
@@ -133,12 +127,6 @@ public class PaysDAO implements IPaysDAO {
 			ps.setString(2,p.getSuperficie());
 			ps.setInt(3, p.getId());
 			ps.executeUpdate();
-			
-			VilleDAO villeDAO = new VilleDAO();
-			
-			for(Ville v : p.getVilles()){
-				villeDAO.update(v);
-			}
 		} catch (Exception ee) {
 			ee.printStackTrace();
 		} finally {

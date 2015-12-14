@@ -118,25 +118,41 @@ public class main {
 		System.out.println("JDBC");
 		jdbc.getPaysDAO().delete(pays);
 		
+		
 		System.out.println("\n			Bidirectionnal :\n");
 		
+		System.out.println("\nHibernate :\n");
 		Pays paysBid = new Pays(0,"Allemagne","645km2");
-		Ville berlin = new Ville(0, "Berlin", 2240000, paysBid);
-		Ville hamburg = new Ville (0, "Hamburg", 250000, paysBid);
-		
-		paysBid.setVille(berlin);
 		hiber.getPaysDAO().ajouter(paysBid);
+		Ville berlin = new Ville(0, "Berlin", 2240000, paysBid);
+		hiber.getVilleDAO().ajouter(berlin);
 		
 		Pays paysBidTest = hiber.getPaysDAO().getPays(paysBid.getId());
 		System.out.println(paysBidTest.toString());
-		paysBid.setVille(hamburg);
+		Ville hamburg = new Ville (0, "Hamburg", 250000, paysBid);
+		hiber.getVilleDAO().ajouter(hamburg);
+		paysBidTest.setVille(hamburg);
 		System.out.println(paysBidTest.toString());
-		
-		hiber.getPaysDAO().update(paysBidTest);
-		paysBidTest = hiber.getPaysDAO().getPays(paysBidTest.getId());
+		paysBidTest = hiber.getPaysDAO().getPays(paysBid.getId());
 		System.out.println(paysBidTest.toString());
 		
 		hiber.getPaysDAO().delete(paysBidTest);
 		
+		System.out.println("\nJDBC :\n");
+		paysBid = new Pays(0,"Allemagne","645km2");
+		jdbc.getPaysDAO().ajouter(paysBid);
+		berlin = new Ville(0, "Berlin", 2240000, paysBid);
+		jdbc.getVilleDAO().ajouter(berlin);
+		
+		paysBidTest = jdbc.getPaysDAO().getPays(paysBid.getId());
+		System.out.println(paysBidTest.toString());
+		hamburg = new Ville (0, "Hamburg", 250000, paysBid);
+		jdbc.getVilleDAO().ajouter(hamburg);
+		paysBidTest.setVille(hamburg);
+		System.out.println(paysBidTest.toString());
+		paysBidTest = jdbc.getPaysDAO().getPays(paysBid.getId());
+		System.out.println(paysBidTest.toString());
+		
+		jdbc.getPaysDAO().delete(paysBidTest);
 	}
 }

@@ -101,7 +101,6 @@ public class VilleDAO implements IVilleDAO{
 			ps.setInt(1,pays.getId());
 			rs=ps.executeQuery();
 			while(rs.next()){
-				PaysDAO paysDAO = new PaysDAO();
 				retour.add(new Ville(rs.getInt("id"),rs.getString("nom"),rs.getInt("nb_habitants"),pays));
 			}
 		} catch (Exception ee) {
